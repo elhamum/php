@@ -3,8 +3,14 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": false
+    }
+  },
   "forwardPorts": [80, 3306, 8081],
-  "postCreateCommand": "echo 'Container built successfully!'",
+  "postCreateCommand": "echo 'Container started successfully!'",
   "customizations": {
     "vscode": {
       "extensions": [
