@@ -1,0 +1,22 @@
+{
+  "name": "PHP DevSecOps Lab",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    }
+  },
+  "forwardPorts": [80, 3306, 8081],
+  "postCreateCommand": "docker-compose up -d",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "bmewburn.vscode-intelephense-client",
+        "felixfbecker.php-debug"
+      ]
+    }
+  }
+}
