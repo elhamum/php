@@ -1,18 +1,10 @@
 {
   "name": "PHP DevSecOps Lab",
   "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "VARIANT": "ubuntu-22.04"
-    }
-  },
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest"
-    }
+    "dockerfile": "Dockerfile"
   },
   "forwardPorts": [80, 3306, 8081],
-  "postCreateCommand": "docker-compose up -d",
+  "postCreateCommand": "echo 'Container built successfully!'",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -23,4 +15,5 @@
     }
   }
 }
+
 
