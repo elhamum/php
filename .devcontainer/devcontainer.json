@@ -9,7 +9,7 @@
     }
   },
   "forwardPorts": [80, 3306, 8081],
-  "postCreateCommand": "docker-compose up -d",
+  //"postCreateCommand": "docker-compose up -d",
   "customizations": {
     "vscode": {
       "extensions": [
