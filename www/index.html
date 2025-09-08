@@ -12,11 +12,12 @@
   <pre id="result"></pre>
 
   <script>
-    async function fetchBackend() {
-      const res = await fetch("index.php"); // calls your PHP backend
-      const text = await res.text();
-      document.getElementById("result").textContent = text;
-    }
+async function fetchBackend() {
+  const res = await fetch("api.php");
+  document.getElementById("result").textContent = await res.text();
+}
+</script>
+
   </script>
 </body>
 </html>
