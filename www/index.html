@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontend Demo</title>
+</head>
+<body>
+  <h1>Hello from HTML frontend 👋</h1>
+  <p>This is a static page served by PHP’s built-in webserver.</p>
+
+  <button onclick="fetchBackend()">Call Backend</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function fetchBackend() {
+      const res = await fetch("index.php"); // calls your PHP backend
+      const text = await res.text();
+      document.getElementById("result").textContent = text;
+    }
+  </script>
+</body>
+</html>
