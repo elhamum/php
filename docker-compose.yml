@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   app:
     build:
@@ -7,11 +6,12 @@ services:
       dockerfile: .devcontainer/Dockerfile
     container_name: php-apache
     ports:
-      - "80:80"
+      - "8080:80"           # was 80:80
     volumes:
       - ./www:/var/www/html
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:8.0
@@ -22,15 +22,23 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
     ports:
-      - "3306:3306"
+      - "3306:3306"         # optional; remove if you don't need external MySQL access
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -proot --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       PMA_HOST: db
+      PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "8081:80"
+      - "8081:80"           # phpMyAdmin at 8081
+    restart: unless-stopped
